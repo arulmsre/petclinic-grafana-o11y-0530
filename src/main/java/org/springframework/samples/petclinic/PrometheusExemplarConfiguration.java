@@ -25,7 +25,7 @@ public class PrometheusExemplarConfiguration {
 						if (!Span.current().getSpanContext().isSampled()) {
 							return null;
 						}
-						
+
 						return super.getTraceId();
 					}
 				}));
