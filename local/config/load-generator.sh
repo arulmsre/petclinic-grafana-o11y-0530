@@ -1,1 +1,1 @@
-while true; do curl http://spring-petclinic:8080; sleep 10s; done
+while true; do curl http://localhost:8080; sleep 10s; done

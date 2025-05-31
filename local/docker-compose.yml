@@ -5,16 +5,14 @@ services:
   load-generator:
     image: curlimages/curl:latest
     volumes:
-      - ../load-generator.sh:/tmp/load-generator.sh
-    command: /bin/sh -c "/tmp/load-generator.sh"
+      - ./load-generator.sh:/tmp/load-generator.sh
+    entrypoint: ["sh", "-c", "chmod +x /tmp/load-generator.sh && /tmp/load-generator.sh"]
+
   
   loki:
     image: grafana/loki:latest
     volumes:
       - ./config/loki-config.yaml:/etc/config/loki.yaml
-    entrypoint:
-      - /usr/bin/loki
-      - -config.file=/etc/config/loki.yaml
     ports:
       - "3100:3100"
      
@@ -91,17 +89,9 @@ services:
   agent:
     image: grafana/agent:latest
     volumes:
-      - ./config/agent.yaml:/etc/agent-config/agent.yaml
-      - ./logs/pet-clinic.log:/tmp/pet-clinic.log
-      - ./logs/tomcat_log.log:/tmp/tomcat_log.log
-      - /tmp/agent:/etc/agent
-    entrypoint:
-      - /bin/agent
-      - -config.file=/etc/agent-config/agent.yaml
-      - -metrics.wal-directory=/tmp/agent/wal
-      - -enable-features=integrations-next
-      - -config.expand-env
-      - -config.enable-read-api
+      - ./config/agent.yaml:/etc/agent.yaml
+      - ./logs/pet-clinic.log:/etc/pet-clinic.log
+      - ./logs/tomcat_log.log:/etc/tomcat_log.log
     environment:
       HOSTNAME: agent
       LOKI_HOST: loki:3100

@@ -22,7 +22,7 @@ You can run the whole stack locally inside Docker, after building the applicatio
 ```
 git clone adamquan/petclinic-grafana-o11y
 cd petclinic-grafana-o11y
-./mvnw package
+./mvnw package -DskipTest
 docker build -t spring-petclinic .
 cd local
 docker-compose up

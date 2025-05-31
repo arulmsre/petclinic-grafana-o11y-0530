@@ -391,7 +391,8 @@
                     <pluginExecution>
                       <pluginExecutionFilter>
                         <groupId>io.spring.javaformat</groupId>
-                        <artifactId>spring-javaformat-maven-plugin</artifactId>
+                        <artifactId>spring-javaforma
+                        t-maven-plugin</artifactId>
                         <versionRange>[0,)</versionRange>
                         <goals>
                           <goal>validate</goal>
